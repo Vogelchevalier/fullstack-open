@@ -1,0 +1,7 @@
+note over Browser:
+selain lisää noten sivulle
+ja renderöi notet uudestaan
+end note
+
+Browser->Server: HTTP POST json{ content: "test", date: "2019-01-01" } https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+Server-->Browser: 201

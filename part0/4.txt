@@ -1,0 +1,39 @@
+note over Browser:
+Tässä vaiheessa jo sivu ladattu
+end note
+note over Browser:
+Selain lähettää kenttään
+kirjoitetun tekstin
+end note
+Browser->Server: HTTP POST "test" https://studies.cs.helsinki.fi/exampleapp/new_note
+note over Server:
+Palvelin käskee lataamaan sivun uudestaan
+jotta uusi note näkyy selaimessa
+end note
+Server-->Browser: 302 /notes
+note over Browser:
+Selain lataa sivun uudestaan
+end note
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+Server-->Browser: HTML
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server-->Browser: CSS
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+Server-->Browser: JS
+
+note over Browser:
+selain alkaa suorittaa js-koodia
+joka pyytää JSON-datan palvelimelta
+end note
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+note over Server:
+Tällä kertaa datassa on mukana
+käyttäjän oma muistiinpano
+end note
+Server-->Browser: [{ content: "test", date: "2019-01-01" }, ...]
+
+note over Browser:
+selain suorittaa tapahtumankäsittelijän
+joka renderöi muistiinpanot näytölle
+end note
